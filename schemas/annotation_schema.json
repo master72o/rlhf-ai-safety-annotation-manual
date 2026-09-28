@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RLHFPairwiseAnnotationSchema",
+  "type": "object",
+  "required": [
+    "prompt_id",
+    "chosen_response",
+    "preference_strength",
+    "rationale",
+    "dimension_scores"
+  ],
+  "properties": {
+    "prompt_id": {
+      "type": "string"
+    },
+    "chosen_response": {
+      "type": "string",
+      "enum": [
+        "Response A",
+        "Response B",
+        "TIE"
+      ]
+    },
+    "preference_strength": {
+      "type": "string",
+      "enum": [
+        "Slightly Better",
+        "Better",
+        "Much Better",
+        "Equal"
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 20
+    },
+    "dimension_scores": {
+      "type": "object",
+      "required": [
+        "helpfulness",
+        "harmlessness",
+        "honesty",
+        "reasoning",
+        "style"
+      ],
+      "properties": {
+        "helpfulness": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "harmlessness": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "honesty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "reasoning": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "style": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        }
+      }
+    },
+    "hazard_flag": {
+      "type": "boolean"
+    },
+    "hazard_category": {
+      "type": "string"
+    }
+  }
+}
